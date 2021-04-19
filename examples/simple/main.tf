@@ -12,9 +12,8 @@ resource "azurerm_resource_group" "project_group" {
 }
 
 module "vnet_simple" {
-  source = "../../../terraform-azurerm-vnet"
-  #source  = "andrewCluey/vnet/azurerm"
-  #version = "1.0.0"
+  source  = "andrewCluey/vnet/azurerm"
+  version = "0.1.0"
 
   project_code        = local.project_code
   environment         = "dev"
@@ -27,7 +26,7 @@ module "vnet_simple" {
 
 
 module "simple_subnet" {
-  source = "../../"
+  source  = "andrewCluey/subnet/azurerm"
 
   environment          = "dev"
   project_code         = local.project_code
@@ -45,6 +44,5 @@ module "simple_subnet" {
     ]
   }
 
-  route_table_name  = "default"
   service_endpoints = ["Microsoft.Storage", "Microsoft.KeyVault", "Microsoft.ServiceBus", "Microsoft.Web"]
 }

@@ -9,9 +9,7 @@ locals {
     project     = var.project_code
   }
 
-  tags = merge(var.tags, local.module_tag, local.default_tags)
-
-  subnets_outputs           = zipmap(azurerm_subnet.subnet[*].name, azurerm_subnet.subnet[*].id)
+  tags                      = merge(var.tags, local.module_tag, local.default_tags)
   route_table_rg            = coalesce(var.route_table_rg, var.resource_group_name)
   network_security_group_rg = coalesce(var.network_security_group_rg, var.resource_group_name)
 }
