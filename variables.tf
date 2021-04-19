@@ -1,7 +1,14 @@
 # variables
 variable "name_prefix" {
   type        = string
-  description = "The name prefix to use for the vNet. Should be unique within the vNET."
+  description = "The name prefix to use for the vNet. Must be set if 'subnet_name' not set."
+  default     = null
+}
+
+variable "subnet_name" {
+  type        = string
+  description = "The name to assign to the Subnet. Use if the subnet needs a fixed name (such as AzureFirewall or Bastion)."
+  default     = null
 }
 
 variable "location" {
@@ -41,7 +48,6 @@ variable "resource_group_name" {
   description = "The name of the Resource Group where the new vNet will be created."
   default     = "type"
 }
-
 
 variable "vnet_name" {
   description = "Virtual network name"

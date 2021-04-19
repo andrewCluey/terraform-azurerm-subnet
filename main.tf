@@ -1,6 +1,7 @@
 locals {
 
-  subnet_name = lower("sn-${var.name_prefix}-${var.project_code}-${var.location_short}-${var.environment}")
+  default_name = lower("sn-${var.name_prefix}-${var.project_code}-${var.location_short}-${var.environment}")
+  subnet_name  = var.subnet_name != "" ? var.subnet_name : local.default_name
 
   module_tag = {
     "module" = basename(abspath(path.module))
