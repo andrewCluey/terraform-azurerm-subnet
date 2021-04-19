@@ -26,6 +26,7 @@ module "vnet_simple" {
 
 module "simple_subnet" {
   source = "andrewCluey/subnet/azurerm"
+  version = "0.2.3"
 
   environment         = "dev"
   name_prefix         = "strorage"
