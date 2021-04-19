@@ -13,7 +13,6 @@ resource "azurerm_resource_group" "project_group" {
 
 module "vnet_simple" {
   source  = "andrewCluey/vnet/azurerm"
-  version = "0.1.0"
 
   project_code        = local.project_code
   environment         = "dev"
@@ -29,6 +28,7 @@ module "simple_subnet" {
   source  = "andrewCluey/subnet/azurerm"
 
   environment          = "dev"
+  name_prefix          = "strorage"
   project_code         = local.project_code
   location             = "UK South"
   location_short       = "uks"

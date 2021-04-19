@@ -1,16 +1,22 @@
 locals {
-  name_prefix = var.name_prefix != "" ? replace(var.name_prefix, "/[a-z0-9]$/", "$0-") : ""
-  subnet_name = lower("${local.name_prefix}-${var.project_code}-${var.location_short}-${var.environment}")
-  module_tag = {
+
+  subnet_name = lower("sn-${var.name_prefix}-${var.project_code}-${var.location_short}-${var.environment}")
+  
+  module_tag  = {
     "module" = basename(abspath(path.module))
   }
+
   default_tags = {
     environment = var.environment
     project     = var.project_code
   }
 
   tags                      = merge(var.tags, local.module_tag, local.default_tags)
+
+  # Use Subnet RG if Route Table resource group not specified
   route_table_rg            = coalesce(var.route_table_rg, var.resource_group_name)
+
+  # Use Subnet RG if network securitry group Resource Group not specified.
   network_security_group_rg = coalesce(var.network_security_group_rg, var.resource_group_name)
 }
 
@@ -31,7 +37,7 @@ data "azurerm_network_security_group" "nsg_data" {
 resource "azurerm_subnet" "subnet" {
   name                 = local.subnet_name
   resource_group_name  = var.resource_group_name
-  virtual_network_name = var.virtual_network_name
+  virtual_network_name = var.vnet_name
   address_prefixes     = var.subnet_cidr_list
 
   service_endpoints = var.service_endpoints

@@ -44,7 +44,7 @@ variable "resource_group_name" {
 }
 
 
-variable "virtual_network_name" {
+variable "vnet_name" {
   description = "Virtual network name"
   type        = string
 }
