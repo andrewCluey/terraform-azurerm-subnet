@@ -12,7 +12,7 @@ resource "azurerm_resource_group" "project_group" {
 }
 
 module "vnet_simple" {
-  source  = "andrewCluey/vnet/azurerm"
+  source = "andrewCluey/vnet/azurerm"
 
   project_code        = local.project_code
   environment         = "dev"
@@ -25,7 +25,7 @@ module "vnet_simple" {
 
 
 module "simple_subnet" {
-  source  = "andrewCluey/subnet/azurerm"
+  source = "andrewCluey/subnet/azurerm"
 
   environment          = "dev"
   name_prefix          = "strorage"
@@ -33,7 +33,7 @@ module "simple_subnet" {
   location             = "UK South"
   location_short       = "uks"
   resource_group_name  = azurerm_resource_group.project_group.name
-  virtual_network_name = module.vnet_simple.vnet_name
+  vnet_name = module.vnet_simple.vnet_name
   subnet_cidr_list     = ["10.0.0.0/24"]
   subnet_delegation = {
     app-service-plan = [

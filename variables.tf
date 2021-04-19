@@ -1,8 +1,7 @@
 # variables
 variable "name_prefix" {
   type        = string
-  description = "Optional. The name prefix to use for the vNet. Defaults to 'vn'"
-  default     = "vn"
+  description = "The name prefix to use for the vNet. Should be unique within the vNET."
 }
 
 variable "location" {
