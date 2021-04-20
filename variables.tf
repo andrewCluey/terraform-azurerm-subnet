@@ -2,13 +2,13 @@
 variable "name_prefix" {
   type        = string
   description = "The name prefix to use for the vNet. Must be set if 'subnet_name' not set."
-  default     = null
+  default     = ""
 }
 
 variable "subnet_name" {
   type        = string
   description = "The name to assign to the Subnet. Use if the subnet needs a fixed name (such as AzureFirewall or Bastion)."
-  default     = null
+  default     = ""
 }
 
 variable "location" {
