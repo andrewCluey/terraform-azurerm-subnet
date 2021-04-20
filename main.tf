@@ -5,12 +5,6 @@ locals {
   default_name = lower("sn-${local.subnet_gen}-${var.project_code}-${var.location_short}-${var.environment}")
   subnet_name  = coalesce(var.subnet_name, local.default_name)
 
-  name_prefix  = var.name_prefix != "" ? replace(var.name_prefix, "/[a-z0-9]$/", "$0-") : ""
-  default_name = lower("${local.name_prefix}${var.stack}-${var.client_name}-${var.location_short}-${var.environment}")
-
-  subnet_name = coalesce(var.custom_subnet_name, "${local.default_name}-subnet")
-
-
   module_tag = {
     "module" = basename(abspath(path.module))
   }
