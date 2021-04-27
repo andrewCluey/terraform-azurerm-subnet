@@ -29,7 +29,7 @@ variable "environment" {
   type        = string
   description = "The staging environment where the new vNet will be deployed. For example 'Dev'"
   validation {
-    condition     = can(regex("^[a-zA-Z0-9]{1,5}$", var.environment))
+    condition     = can(regex("^[a-zA-Z0-9]{1,6}$", var.environment))
     error_message = "The environment name should be without spaces and less than 5 characters."
   }
 }
