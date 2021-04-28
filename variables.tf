@@ -59,7 +59,7 @@ variable "service_endpoints" {
 variable "enforce_private_link" {
   description = "Enable or Disable network policies for the private link endpoint on the subnet. "
   type        = bool
-  default     = True
+  default     = true
 }
 
 variable "subnet_delegation" {
