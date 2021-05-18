@@ -4,6 +4,15 @@
 # Options to associate with an existing Route Table and NSG
 #
 ################################################
+# Minimum azure provider to use
+terraform {
+  required_providers {
+    azurerm = {
+      source = "hashicorp/azurerm"
+      version = ">= 2.54.0"
+    }
+  }
+}
 
 locals {
   # Use the subnets RG if Route Table resource group has not been specified
